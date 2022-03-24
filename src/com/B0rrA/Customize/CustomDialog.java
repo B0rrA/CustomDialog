@@ -15,14 +15,13 @@ import javax.swing.ImageIcon;
 /**
  * Módulo para generar un JDialog personalizado
  * @author Gustavo Maciel
- * @version 3.0
+ * @version 3.1
  */
 public class CustomDialog extends javax.swing.JDialog {
 
     private boolean confirmado=false;
     private boolean cancelado=false;
     private boolean soloNumeros=false;
-    private boolean cerrarAlConfirmar=true;
     private Object resultado;
     private CardLayout cards;
     private final Color[] colores;
@@ -142,14 +141,6 @@ public class CustomDialog extends javax.swing.JDialog {
     public void setTamaño(Dimension d) {
         this.setSize(d);
         this.setPreferredSize(d);
-    }
-    
-    /** Método para cambiar el comportamiento diálogo al confirmar. TRUE por defecto
-     * 
-     * @param cerrar TRUE para cerrar al confirmar
-     */
-    public void setCerrarAlConfirmar(Boolean cerrar) {
-        this.cerrarAlConfirmar=cerrar;
     }
     
     /** Método para estado del dialogo
@@ -682,15 +673,15 @@ public class CustomDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPositivoKeyPressed
 
     private void btnPositivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPositivoActionPerformed
+        // asigna confirmado a verdadero
         confirmado=true;
+        // asigna el resultado
         if (textField.isShowing()) {
             resultado=txtInput.getText();
         } else {
             resultado=txtFecha.getDate();
         }
-        if (cerrarAlConfirmar) {
-            dispose();
-        }
+        dispose();
     }//GEN-LAST:event_btnPositivoActionPerformed
 
     private void btnPositivoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPositivoMouseReleased
