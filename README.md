@@ -1,8 +1,8 @@
-#Custom Dialog
+# Custom Dialog
 
 Extiende y personaliza de manera rápida un JDialog
 
-###Uso básico:
+### Uso básico:
 1. Importa la librería (.jar) a tu proyecto
 2. Importa la clase a tu formulario
 `import com.B0rrA.Customize.CustomDialog;`
@@ -34,7 +34,7 @@ Extiende y personaliza de manera rápida un JDialog
         System.out.println("Cancelado");
     }
 
-###Opciones
+### Opciones
 Se utiliza las opciones de `JOptionPane` para asignar los botones
 | Opción  | Botón Positivo | Botón Negativo | Botón Cancelar |
 | ------------- | ------------- |
@@ -43,7 +43,7 @@ Se utiliza las opciones de `JOptionPane` para asignar los botones
 | QUESTION_MESSAGE  | `Buscar` | No se muestra | `Cancelar` |
 | *Cualquier otro* | `Aceptar` | No se muestra | No se muestra |
 
-###Componentes utilizables
+### Componentes utilizables
 | Nombre  | Descripción |
 | ------------- | ------------- |
 | textField  | Utiliza un JTextField como método de entrada de datos  |
@@ -51,7 +51,7 @@ Se utiliza las opciones de `JOptionPane` para asignar los botones
 | textArea  | Utiliza un JTextArea para ingresar textos largos  |
 | `null` | No muestra ningun componente para ingreso de datos |
 
-###Métodos principales
+### Métodos principales
 | Método  | Descripción |
 | ------------- | ------------- |
 | `setSoloNúmeros(boolean)`  |  Cuando se utiliza textField, asigna si aceptará solo números. Falso por defecto |
