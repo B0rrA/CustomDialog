@@ -28,7 +28,7 @@ public class CustomDialog extends javax.swing.JDialog {
     
     
     /**
-     * Creates un nuevo dialogo personalizado
+     * Crea un nuevo dialogo personalizado
      * @param parent Formulario desde el cual se llama
      * @param opciones Tipo de opciones de botones (usar opciones de jOptionPane)
      * @param componente Componente a mostrar. Se aceptan "textField" o "calendar"
@@ -87,7 +87,6 @@ public class CustomDialog extends javax.swing.JDialog {
             txtTexto.setCaretPosition(0);
             cards.show(panelTipo, componente);
         }
-        
         switch(opciones) {
             case 0:
                 btnPositivo.setText("Si");
