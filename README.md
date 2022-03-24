@@ -1,13 +1,14 @@
-#Custom Dialog
+# Custom Dialog
 
 Extiende y personaliza de manera rápida un JDialog
 
-###Uso básico:
+### Uso básico:
 1. Importa la librería (.jar) a tu proyecto
 2. Importa la clase a tu formulario
 `import com.B0rrA.Customize.CustomDialog;`
 3. Utiliza la clase
-    JPanel panel = new JPanel(); // Panel principal
+```JAVA
+    JFrame formulario = new JFrame(); // Formulario desde el cual se mostrará 
     int opcion = JOptionPane.OK_CANCEL_OPTION; // Opciones para los botones
     String componente = "textField" // Tipo de componente para input
     String título = "Imprimir etiquetas"; // Título de la ventana
@@ -23,7 +24,7 @@ Extiende y personaliza de manera rápida un JDialog
     colores[6]= 0,0,0); //Color de las letras
     colores[7]= 204,204,204; //Color de borde al enfocar a un componente
     colores[8]= 255,255,255; //Color de letras en contraste
-    CustomDialog cd = new CustomDialog(panel,opcion,componente,título,mensaje,colores,icono);
+    CustomDialog cd = new CustomDialog(formulario,opcion,componente,título,mensaje,colores,icono);
     cd.setLocationRelativeTo(null);
     cd.setSize(295,175);
     cd.setVisible(true);
@@ -33,17 +34,17 @@ Extiende y personaliza de manera rápida un JDialog
     } else if (cd.estaCancelado()) {
         System.out.println("Cancelado");
     }
-
-###Opciones
+```
+### Opciones
 Se utiliza las opciones de `JOptionPane` para asignar los botones
 | Opción  | Botón Positivo | Botón Negativo | Botón Cancelar |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- |
 | YES_NO_OPTION  | `Sí`  | `No` | No se muestra |
 | YES_NO_CANCEL_OPTION  | `Sí`  | `No` | `Cancelar` |
 | QUESTION_MESSAGE  | `Buscar` | No se muestra | `Cancelar` |
 | *Cualquier otro* | `Aceptar` | No se muestra | No se muestra |
 
-###Componentes utilizables
+### Componentes utilizables
 | Nombre  | Descripción |
 | ------------- | ------------- |
 | textField  | Utiliza un JTextField como método de entrada de datos  |
@@ -51,7 +52,7 @@ Se utiliza las opciones de `JOptionPane` para asignar los botones
 | textArea  | Utiliza un JTextArea para ingresar textos largos  |
 | `null` | No muestra ningun componente para ingreso de datos |
 
-###Métodos principales
+### Métodos principales
 | Método  | Descripción |
 | ------------- | ------------- |
 | `setSoloNúmeros(boolean)`  |  Cuando se utiliza textField, asigna si aceptará solo números. Falso por defecto |
