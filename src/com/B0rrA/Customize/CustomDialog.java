@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 /**
  * Módulo para generar un JDialog personalizado
  * @author Gustavo Maciel
- * @version 3.1
+ * @version 3.2
  */
 public class CustomDialog extends javax.swing.JDialog {
 
@@ -146,7 +146,7 @@ public class CustomDialog extends javax.swing.JDialog {
      * 
      * @return TRUE si el dialogo ha sido confirmado, caso contrario FALSE
      */
-    public Boolean getEstado() {
+    public Boolean confirmado() {
         return confirmado;
     }
     
@@ -154,7 +154,7 @@ public class CustomDialog extends javax.swing.JDialog {
      * 
      * @return TRUE si el dialogo ha sido cancelado, caso contrario FALSE
      */
-    public Boolean estaCancelado() {
+    public Boolean cancelado() {
         return cancelado;
     }
     
@@ -355,9 +355,9 @@ public class CustomDialog extends javax.swing.JDialog {
 
         jScrollPane2.setBorder(null);
 
-        txtTexto.setEditable(false);
-        txtTexto.setBorder(null);
-        txtTexto.setContentType("text/html"); // NOI18N
+        txtTexto.setContentType("text"); // NOI18N
+        txtTexto.setText("");
+        txtTexto.setToolTipText("");
         jScrollPane2.setViewportView(txtTexto);
 
         javax.swing.GroupLayout textAreaLayout = new javax.swing.GroupLayout(textArea);
@@ -366,7 +366,7 @@ public class CustomDialog extends javax.swing.JDialog {
             textAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 374, Short.MAX_VALUE)
             .addGroup(textAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
+                .addComponent(jScrollPane2))
         );
         textAreaLayout.setVerticalGroup(
             textAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,7 +430,7 @@ public class CustomDialog extends javax.swing.JDialog {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(panelTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addComponent(btnPositivo, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
@@ -677,6 +677,8 @@ public class CustomDialog extends javax.swing.JDialog {
         // asigna el resultado
         if (textField.isShowing()) {
             resultado=txtInput.getText();
+        } else if (txtTexto.isShowing()) {
+            resultado=txtTexto.getText();
         } else {
             resultado=txtFecha.getDate();
         }
