@@ -285,7 +285,6 @@
                     <Component class="javax.swing.JEditorPane" name="txtTexto">
                       <Properties>
                         <Property name="contentType" type="java.lang.String" value="text" noResource="true"/>
-                        <Property name="text" type="java.lang.String" value=""/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
