@@ -147,6 +147,16 @@ public class CustomDialog extends javax.swing.JDialog {
         this.decimales = cantidadDecimales;
     }
     
+    /** Método para asignar un valor inicial al campo de entrada
+     * 
+     * @param valor valor a asignar
+     */
+    public void setValorInicial(String valor) {
+        txtInput.setText(valor);
+        txtFecha.setDate(Date.valueOf(valor));
+        txtTexto.setText(valor);
+    }
+    
     /** Método para asignar el tamaño del diálogo
      * 
      * @param d tamaño a asignar
