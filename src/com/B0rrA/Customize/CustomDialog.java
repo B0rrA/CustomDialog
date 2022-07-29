@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 /**
  * Módulo para generar un JDialog personalizado
  * @author Gustavo Maciel
- * @version 3.4
+ * @version 3.5
  */
 public class CustomDialog extends javax.swing.JDialog {
 
@@ -652,6 +652,104 @@ public class CustomDialog extends javax.swing.JDialog {
                 evt.getComponent().transferFocus();
                 break;
             default:
+                if (soloNumeros) {
+                    JTextField txt = txtInput;
+                    DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+                    dfs.setGroupingSeparator('.');
+                    dfs.setDecimalSeparator(',');
+                    DecimalFormat df;
+                    //<editor-fold defaultstate="collapsed" desc="Se crean los formatos teniendo en cuenta la cantidad de decimales">
+                    switch (decimales) {
+                        case 1:
+                            df= new DecimalFormat("###,###.#",dfs);
+                            break;
+                        case 2:
+                            df= new DecimalFormat("###,###.##",dfs);
+                            break;
+                        case 3:
+                            df= new DecimalFormat("###,###.###",dfs);
+                            break;
+                        case 4:
+                            df= new DecimalFormat("###,###.####",dfs);
+                            break;
+                        case 5:
+                            df= new DecimalFormat("###,###.#####",dfs);
+                            break;
+                        case 6:
+                            df= new DecimalFormat("###,###.######",dfs);
+                            break;
+                        default:
+                            df= new DecimalFormat("###,###",dfs);
+                            break;
+                    }
+                    //</editor-fold>
+                    String t = txt.getText();
+                    switch (evt.getKeyCode()) {
+                        case 8://borrar
+                            if (!t.isEmpty() || txt.getCaretPosition()>0) {
+                                if (!t.contains(",") || txt.getCaretPosition()!=t.length()) {
+                                    int posicion=txt.getCaretPosition();
+                                    int tamañoa=t.length();
+                                    Double c = Double.valueOf(txt.getText().replace(".", "").replace(",","."));
+                                    txt.setText(df.format(c));
+                                    String b = txt.getText();
+                                    int tamañob=b.length();
+                                    int cambios=tamañob-tamañoa;
+                                    txt.setCaretPosition(posicion+cambios);
+                                }
+                            }
+                            break;
+                        case 37://atras
+                        case 38://arriba
+                        case 39://adelante
+                        case 40://abajo
+                            break;
+                        case 96://cero
+                            if (!t.isEmpty()) {
+                                if (!t.contains(",") || txt.getCaretPosition()!=t.length()) {
+                                    int posicion=txt.getCaretPosition();
+                                    int tamañoa=t.length();
+                                    Double c = Double.valueOf(txt.getText().replace(".", "").replace(",","."));
+                                    txt.setText(df.format(c));
+                                    String b = txt.getText();
+                                    int tamañob=b.length();
+                                    int cambios=tamañob-tamañoa;
+                                    txt.setCaretPosition(posicion+cambios);
+                                }
+                            }
+                            break;
+                        case 44://coma
+                            if (t.isEmpty()) {
+                                txt.setText("0,");
+                            } else {
+                                if (!t.contains(",")) {
+                                    txt.setText(t+",");
+                                } 
+                            }
+                            break;
+                        case 110://punto
+                            if (t.isEmpty()) {
+                                txt.setText("0,");
+                            } else {
+                                if (!t.contains(",")) {
+                                    txt.setText(t+",");
+                                } 
+                            }
+                            break;
+                        default:
+                            if (!t.isEmpty()) {
+                                int posicion=txt.getCaretPosition();
+                                int tamañoa=t.length();
+                                Double c = Double.valueOf(txt.getText().replace(".", "").replace(",","."));
+                                txt.setText(df.format(c));
+                                String b = txt.getText();
+                                int tamañob=b.length();
+                                int cambios=tamañob-tamañoa;
+                                txt.setCaretPosition(posicion+cambios);
+                            }
+                            break;
+                    }
+                }
                 break;
         }
     }//GEN-LAST:event_txtInputKeyReleased
@@ -662,101 +760,9 @@ public class CustomDialog extends javax.swing.JDialog {
 
     private void txtInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInputKeyTyped
         if (soloNumeros) {
-            JTextField txt = txtInput;
-            DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-            dfs.setGroupingSeparator('.');
-            dfs.setDecimalSeparator(',');
-            DecimalFormat df;
-            //<editor-fold defaultstate="collapsed" desc="Se crean los formatos teniendo en cuenta la cantidad de decimales">
-            switch (decimales) {
-                case 1:
-                    df= new DecimalFormat("###,###.#",dfs);
-                    break;
-                case 2:
-                    df= new DecimalFormat("###,###.##",dfs);
-                    break;
-                case 3:
-                    df= new DecimalFormat("###,###.###",dfs);
-                    break;
-                case 4:
-                    df= new DecimalFormat("###,###.####",dfs);
-                    break;
-                case 5:
-                    df= new DecimalFormat("###,###.#####",dfs);
-                    break;
-                case 6:
-                    df= new DecimalFormat("###,###.######",dfs);
-                    break;
-                default:
-                    df= new DecimalFormat("###,###",dfs);
-                    break;
-            }
-            //</editor-fold>
-            String t = txt.getText();
-            switch (evt.getKeyCode()) {
-                case 8://borrar
-                    if (!t.isEmpty() || txt.getCaretPosition()>0) {
-                        if (!t.contains(",") || txt.getCaretPosition()!=t.length()) {
-                            int posicion=txt.getCaretPosition();
-                            int tamañoa=t.length();
-                            Double c = Double.valueOf(txt.getText().replace(".", "").replace(",","."));
-                            txt.setText(df.format(c));
-                            String b = txt.getText();
-                            int tamañob=b.length();
-                            int cambios=tamañob-tamañoa;
-                            txt.setCaretPosition(posicion+cambios);
-                        }
-                    }
-                    break;
-                case 37://atras
-                case 38://arriba
-                case 39://adelante
-                case 40://abajo
-                    break;
-                case 96://cero
-                    if (!t.isEmpty()) {
-                        if (!t.contains(",") || txt.getCaretPosition()!=t.length()) {
-                            int posicion=txt.getCaretPosition();
-                            int tamañoa=t.length();
-                            Double c = Double.valueOf(txt.getText().replace(".", "").replace(",","."));
-                            txt.setText(df.format(c));
-                            String b = txt.getText();
-                            int tamañob=b.length();
-                            int cambios=tamañob-tamañoa;
-                            txt.setCaretPosition(posicion+cambios);
-                        }
-                    }
-                    break;
-                case 44://coma
-                    if (t.isEmpty()) {
-                        txt.setText("0,");
-                    } else {
-                        if (!t.contains(",")) {
-                            txt.setText(t+",");
-                        } 
-                    }
-                    break;
-                case 110://punto
-                    if (t.isEmpty()) {
-                        txt.setText("0,");
-                    } else {
-                        if (!t.contains(",")) {
-                            txt.setText(t+",");
-                        } 
-                    }
-                    break;
-                default:
-                    if (!t.isEmpty()) {
-                        int posicion=txt.getCaretPosition();
-                        int tamañoa=t.length();
-                        Double c = Double.valueOf(txt.getText().replace(".", "").replace(",","."));
-                        txt.setText(df.format(c));
-                        String b = txt.getText();
-                        int tamañob=b.length();
-                        int cambios=tamañob-tamañoa;
-                        txt.setCaretPosition(posicion+cambios);
-                    }
-                    break;
+            char car = evt.getKeyChar(); 
+            if    ((car<'0' || car>'9')) {
+                evt.consume();
             }
         }
     }//GEN-LAST:event_txtInputKeyTyped
