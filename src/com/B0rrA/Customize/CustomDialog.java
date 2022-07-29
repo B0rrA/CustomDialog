@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 /**
  * Módulo para generar un JDialog personalizado
  * @author Gustavo Maciel
- * @version 3.3
+ * @version 3.4
  */
 public class CustomDialog extends javax.swing.JDialog {
 
@@ -38,7 +38,7 @@ public class CustomDialog extends javax.swing.JDialog {
      * @param componente Componente a mostrar. Se aceptan "textField" o "calendar"
      * @param título Título del dialogo
      * @param mensaje mensaje del dialogo
-     * @param colores paleta de colores <p> 
+     * @param colores paleta de colores  
      * <ol start="0">
      *  <li>Background</li>
      *  <li>Foreground</li>
@@ -153,8 +153,15 @@ public class CustomDialog extends javax.swing.JDialog {
      */
     public void setValorInicial(String valor) {
         txtInput.setText(valor);
-        txtFecha.setDate(Date.valueOf(valor));
         txtTexto.setText(valor);
+    }
+    
+    /** Método para asignar un valor inicial al campo de entrada
+     * 
+     * @param fecha fecha a asignar
+     */
+    public void setValorInicial(Date fecha) {
+        txtFecha.setDate(fecha);
     }
     
     /** Método para asignar el tamaño del diálogo
